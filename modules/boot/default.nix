@@ -41,9 +41,8 @@ in {
     };
     partitionScheme = mkOption {
       default = {
-        biosBoot = "-part5";
+        biosBoot = "-part4";
         efiBoot = "-part1";
-        swap = "-part4";
         bootPool = "-part2";
         rootPool = "-part3";
       };
