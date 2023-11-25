@@ -16,3 +16,38 @@ password are configured.
 
 [[https://codeberg.org/m0p/dotfiles][My personal dotfiles repo]] contains an example of desktop configuration
 based on sway, tmux and Emacs.
+
+
+# setup post reboot with existing disk
+
+zpool import -f rpool
+zpool import -f bpool
+DISK='/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S59CNM0W613358M_1'
+MNT=$(mktemp -d)
+mkdir -p ~/.config/nix
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+if ! command -v git; then nix-env -f '<nixpkgs>' -iA git; fi
+if ! command -v nvim; then nix-env -f '<nixpkgs>' -iA neovim; fi
+
+mount -t zfs rpool/nixos/root "${MNT}"/
+mount -t zfs rpool/nixos/home "${MNT}"/home
+mount -t zfs bpool/nixos/root "${MNT}"/boot
+mount -t zfs rpool/nixos/var/lib "${MNT}"/var/lib
+mount -t zfs rpool/nixos/var/log "${MNT}"/var/log
+
+mkdir -p "${MNT}"/etc/nixos
+mkdir -p "${MNT}"/nix
+mkdir -p "${MNT}"/persist
+mount -t zfs rpool/nixos/config "${MNT}"/etc/nixos
+mount -t zfs rpool/nixos/nix "${MNT}"/nix
+mount -t zfs rpool/nixos/persist "${MNT}"/persist
+
+
+mount -t vfat -o iocharset=iso8859-1 /dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S59CNM0W613358M_1-part1 "${MNT}"/boot/efis/nvme-Samsung_SSD_970_EVO_Plus_2TB_S59CNM0W613358M_1-part1
+
+
+
+
+
+
+
