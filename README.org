@@ -46,6 +46,16 @@ mount -t zfs rpool/nixos/persist "${MNT}"/persist
 mount -t vfat -o iocharset=iso8859-1 /dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S59CNM0W613358M_1-part1 "${MNT}"/boot/efis/nvme-Samsung_SSD_970_EVO_Plus_2TB_S59CNM0W613358M_1-part1
 
 
+nix flake update --commit-lock-file \
+  "git+file://${MNT}/etc/nixos"
+
+nixos-install \
+--root "${MNT}" \
+--no-root-passwd \
+--flake "git+file://${MNT}/etc/nixos#dabass"
+
+
+
 
 
 
