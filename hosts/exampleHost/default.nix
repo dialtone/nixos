@@ -2,15 +2,15 @@
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
-      bootDevices = [ "bootDevices_placeholder" ];
+      bootDevices = [ "nvme-Samsung_SSD_970_EVO_Plus_2TB_S59CNM0W613358M_1" ];
       immutable.enable = false;
       removableEfi = true;
       luks.enable = false;
     };
   };
-  boot.initrd.availableKernelModules = [ "kernelModules_placeholder" ];
+  boot.initrd.availableKernelModules = [  "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelParams = [ ];
-  networking.hostId = "abcd1234";
+  networking.hostId = "7af06fcb";
   # read changeHostName.txt file.
   networking.hostName = "exampleHost";
   time.timeZone = "Europe/Berlin";

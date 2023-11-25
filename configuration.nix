@@ -10,7 +10,7 @@ in {
 
   users.users = {
     root = {
-      initialHashedPassword = "rootHash_placeholder";
+      initialHashedPassword = "$6$VB2t9vC3NbOiNKZy$0diUBmfXnXIYxTB7WxUy1wvkcclzfJXiOooF.r90wf5j1TxXTR1z8QgJGBNd6j6QbjMIiZ.XWs3km8Nh1lO1s0";
       openssh.authorizedKeys.keys = [ "sshKey_placeholder" ];
     };
   };
