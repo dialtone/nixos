@@ -101,10 +101,11 @@ in {
         efiSystemPartitions =
           (map (diskName: diskName + cfg.partitionScheme.efiBoot)
             cfg.bootDevices);
-        swapPartitions =
-          (map (diskName: diskName + cfg.partitionScheme.swap) cfg.bootDevices);
       };
       boot = {
+        kernelPackages = mkDefault config.boot.zfs.package.latestCompatibleLinuxPackages;
+        initrd.availableKernelModules = cfg.availableKernelModules;
+        kernelParams = cfg.kernelParams;
         supportedFilesystems = [ "zfs" ];
         zfs = {
           devNodes = cfg.devNodes;
@@ -119,7 +120,8 @@ in {
           generationsDir.copyKernels = true;
           grub = {
             enable = true;
-            devices = (map (diskName: cfg.devNodes + diskName) cfg.bootDevices);
+            #devices = (map (diskName: cfg.devNodes + diskName) cfg.bootDevices);
+            devices = "nodev";
             efiInstallAsRemovable = cfg.removableEfi;
             copyKernels = true;
             efiSupport = true;
