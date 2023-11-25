@@ -104,7 +104,7 @@ in {
       };
       boot = {
         # kernelPackages = mkDefault config.boot.zfs.package.latestCompatibleLinuxPackages;
-	kernelPackages = pkgs.linuxPackages_latest;
+	kernelPackages = pkgs.linuxPackages_6_5;
         # initrd.availableKernelModules = cfg.availableKernelModules;
         # kernelParams = cfg.kernelParams;
         initrd.systemd.emergencyAccess = config.users.users.root.hashedPassword;
