@@ -57,6 +57,9 @@ in {
         "rpool/nixos/home" = mkDefault "/home";
         "rpool/nixos/var/lib" = mkDefault "/var/lib";
         "rpool/nixos/var/log" = mkDefault "/var/log";
+        "rpool/nixos/config" = mkDefault "/etc/nixos";
+        "rpool/nixos/nix" = mkDefault "/nix";
+        "rpool/nixos/persist" = mkDefault "/persist";
         "bpool/nixos/root" = "/boot";
       };
     }
