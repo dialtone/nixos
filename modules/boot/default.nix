@@ -103,7 +103,7 @@ in {
         # kernelPackages = mkDefault config.boot.zfs.package.latestCompatibleLinuxPackages;
         # initrd.availableKernelModules = cfg.availableKernelModules;
         # kernelParams = cfg.kernelParams;
-        initrd.systemd.emergencyAccess = config.user.users.root.hashedPassword;
+        initrd.systemd.emergencyAccess = config.users.users.root.hashedPassword;
         supportedFilesystems = [ "zfs" ];
         zfs = {
           devNodes = cfg.devNodes;
