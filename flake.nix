@@ -45,6 +45,9 @@
             # Configuration per host
             ./hosts/${hostName}
 
+	    # per user
+	    ./users/dialtone
+
             # home-manager
             home-manager.nixosModules.home-manager
             {
@@ -55,7 +58,7 @@
         };
     in {
       nixosConfigurations = {
-        exampleHost = mkHost "exampleHost" "x86_64-linux";
+        dabass = mkHost "dabass" "x86_64-linux";
       };
     };
 }

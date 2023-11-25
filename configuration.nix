@@ -11,7 +11,7 @@ in {
   users.users = {
     root = {
       initialHashedPassword = "$6$VB2t9vC3NbOiNKZy$0diUBmfXnXIYxTB7WxUy1wvkcclzfJXiOooF.r90wf5j1TxXTR1z8QgJGBNd6j6QbjMIiZ.XWs3km8Nh1lO1s0";
-      openssh.authorizedKeys.keys = [ "sshKey_placeholder" ];
+      openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA7td9kusYnG7lTNlNP/9bGoJc/fpbVyaSAw7U96NRJYbmtWwvosAi2XpGARjPVqHwju2N9tLqtqoLksJT5vHU3/5P6BXh9h1PY3hC1qnOGXHN7heWlOAqT5Ao1VRDVxUmuUaUpo3ISPwfvRv4ZI8696ixYuW8UfoI2HqwJ5IkW58= dialtone@aiolia.local" ];
     };
   };
 
@@ -63,6 +63,8 @@ in {
     inherit (pkgs)
       mg # emacs-like editor
       jq # other programs
+      neovim
+      ripgrep
     ;
     # By default, the system will only use packages from the
     # stable channel. i.e.
