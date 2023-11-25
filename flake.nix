@@ -43,7 +43,7 @@
             ./configuration.nix
 
             # Configuration per host
-            ./hosts/${hostName}
+            ./hosts/dabass
 
 	    # per user
 	    ./users/dialtone
