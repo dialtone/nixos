@@ -31,6 +31,7 @@
     }@inputs:
     let
       inherit (self) outputs;
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
     in
     rec {
       overlays = {
@@ -45,12 +46,13 @@
         nixgl = nixgl.overlays.default;
       };
 
-      legacyPackages = system:
+      legacyPackages = forAllSystems (system:
         import inputs.nixpkgs {
           inherit system;
           overlays = builtins.attrValues overlays;
           config.allowUnfree = true;
-        };
+        }
+      );
 
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
@@ -71,9 +73,11 @@
               ./nixos/dabass
             ];
           };
-        }
-
+        };
     };
+}
+
+
 
 
   # outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }@inputs:
@@ -130,4 +134,4 @@
   #       dabass = mkHost "dabass" "x86_64-linux";
   #     };
   #   };
-}
+
