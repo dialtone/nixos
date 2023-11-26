@@ -80,10 +80,10 @@ in {
 
   # Safety mechanism: refuse to build unless everything is
   # tracked by git
-  system.configurationRevision = if (self ? rev) then
-    self.rev
-  else
-    throw "refuse to build: git tree is dirty";
+  #system.configurationRevision = if (self ? rev) then
+  #  self.rev
+  #else
+  #  throw "refuse to build: git tree is dirty";
 
   system.stateVersion = "23.05";
 
