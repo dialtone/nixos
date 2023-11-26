@@ -1,1 +1,1 @@
-{ config, lib, pkgs, ... }: { imports = [ ./boot ./fileSystems ./aspm-tuning ]; }
+{ config, lib, pkgs, ... }: { imports = [ ./aspm-tuning ]; }
