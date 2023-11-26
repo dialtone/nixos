@@ -48,6 +48,9 @@
 	    # per user
 	    ./users/dialtone
 
+	    # services
+	    ./services/deluge
+
             # home-manager
             home-manager.nixosModules.home-manager
             {
