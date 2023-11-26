@@ -47,5 +47,8 @@
     gnumake
     gcc
     intel-gpu-tools
+    lm_sensors
+    ripgrep
+    iotop
   ];
 }
