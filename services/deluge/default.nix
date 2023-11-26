@@ -21,5 +21,5 @@ in
 
   services.deluge = {
     enable = true;
-  }
+  };
 }
