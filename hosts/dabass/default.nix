@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, modulesPath, ... }: {
+{ config, pkgs, lib, inputs, modulesPath, nixpkgs, ... }: {
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
@@ -16,6 +16,7 @@
   networking.hostId = "7af06fcb";
   networking.hostName = "dabass";
   time.timeZone = "America/Los_Angeles";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   powerManagement.powertop.enable = true;
 

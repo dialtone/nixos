@@ -1,1 +1,4 @@
-{ config, lib, pkgs, ... }: { imports = [ ./aspm-tuning ]; }
+{
+ aspm-tuning = import ./aspm-tuning;
+
+}

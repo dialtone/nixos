@@ -54,12 +54,13 @@
         }
       );
 
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
+      nixosModules = import ./modules; #/nixos;
+      # homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations =
         let
           defaultModules = (builtins.attrValues nixosModules) ++ [
+	    ./configuration.nix
             agenix.nixosModules.default
             home-manager.nixosModules.default
           ];
@@ -70,7 +71,6 @@
             inherit specialArgs;
             modules = defaultModules ++ [
               ./hosts/dabass
-              ./nixos/dabass
             ];
           };
         };
