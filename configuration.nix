@@ -46,6 +46,8 @@ in {
     settings = { PasswordAuthentication = false; };
   };
 
+  programs.ssh.startAgent = true;
+
   boot.zfs.forceImportRoot = false;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
