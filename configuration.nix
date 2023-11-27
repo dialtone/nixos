@@ -55,7 +55,35 @@ in {
 
   boot.initrd.systemd.enable = true;
 
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    config = {
+      init = {
+        defaultBranch = "main";
+      };
+      user = {
+        email = "dialtone@gmail.com";
+	name = "Valentino Volonghi";
+      };
+      aliases = {
+	st = "status -sb";
+	ci = "commit";
+	br = "branch";
+	co = "checkout";
+	df = "diff";
+	lg = "log -p";
+	lol = "log --graph --decorate --pretty=oneline --abbrev-commit";
+	lola = "log --graph --decorate --pretty=oneline --abbrev-commit --all";
+	ls = "ls-files";
+	cp = "cherry-pick";
+	new = "ls-files --others --exclude-standard";
+	added = "diff --cached --name-only";
+	today = "log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative";
+	plre = "pull --rebase";
+	ff = "merge --ff-only";
+      };
+    };
+  };
 
   security = {
     doas.enable = true;
