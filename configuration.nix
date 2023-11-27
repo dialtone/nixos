@@ -65,7 +65,7 @@ in {
         email = "dialtone@gmail.com";
 	name = "Valentino Volonghi";
       };
-      aliases = {
+      alias = {
 	st = "status -sb";
 	ci = "commit";
 	br = "branch";
