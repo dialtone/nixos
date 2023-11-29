@@ -50,6 +50,8 @@ in {
   programs.ssh.startAgent = true;
 
   boot.zfs.forceImportRoot = false;
+  #have to import nixpkgs-master first
+  #boot.zfs.package = nixpkgs-master.zfs_2_1
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
