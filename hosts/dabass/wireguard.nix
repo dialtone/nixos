@@ -17,13 +17,14 @@
       table = "vpn";
       address = [ "10.64.245.75/32" ];
       listenPort = 51820;
-      dns = [ "1.1.1.1" ];
-      privateKeyFile = config.age.secrets.mullvad_priv_key.path;
+      # this is the device key from mullvad
+      privateKeyFile = config.age.secrets.wireguard_priv_key.path;
       peers = [
         {
-          publicKey = "WfJz/x8yxsukwqLJeJq8c9/1JOHOtZ+Vs+wPSUiRPxQ=";
+	  # publicKey and endpoint have to match and are from the mullvad server list
+          publicKey = "Ow25Pdtyqbv/Y0I0myNixjJ2iljsKcH04PWvtJqbmCk=";
+          endpoint = "198.54.134.98:51820";
           allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "193.32.127.69:51820";
           persistentKeepalive = 25;
         }
       ];
