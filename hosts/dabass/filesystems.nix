@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-
+{config, lib, vars, inputs, pkgs, ... }:
 let
   cfg = config.zfs-root.fileSystems;
   inherit (lib) mkIf types mkDefault mkOption mkMerge mapAttrsToList;

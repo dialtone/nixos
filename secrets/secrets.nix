@@ -4,4 +4,5 @@ let
 in
 {
 	"hashedUserPassword.age".publicKeys = allKeys;
+	"sambaPassword.age".publicKeys = allKeys;
 }

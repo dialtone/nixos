@@ -7,6 +7,7 @@ in
 
   imports = [
     ./aspm-tuning.nix
+    ./samba.nix
   ];
   environment = {
     systemPackages = with pkgs; [

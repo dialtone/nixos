@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, vars, ... }:
 
 let
   cfg = config.zfs-root.boot;
   inherit (lib) mkIf types mkDefault mkOption mkMerge strings;
   inherit (builtins) head toString map tail;
 in {
+  imports = [./snapraid.nix];
+
   options.zfs-root.boot = {
     enable = mkOption {
       description = "Enable root on ZFS support";
@@ -102,12 +104,75 @@ in {
           (map (diskName: diskName + cfg.partitionScheme.efiBoot)
             cfg.bootDevices);
       };
+
+      programs.fuse.userAllowOther = true;
+      environment.systemPackages = with pkgs; [
+        gptfdisk
+        xfsprogs
+        parted
+        snapraid
+        mergerfs
+        mergerfs-tools
+      ];
+
+      # storage array
+      fileSystems."/mnt/data1" =
+      { device = "/dev/disk/by-label/data1";
+        fsType = "xfs";
+      };
+      
+      fileSystems."/mnt/data2" =
+      { device = "/dev/disk/by-label/data2";
+        fsType = "xfs";
+      };
+      
+      fileSystems."/mnt/parity1" =
+      { device = "/dev/disk/by-label/parity1";
+        fsType = "xfs";
+      };
+
+      fileSystems.${vars.slowArray} = 
+      { device = "/mnt/data*";
+        options = [
+            "defaults"
+            "allow_other"
+            "moveonenospc=1"
+            "minfreespace=1000G"
+            "func.getattr=newest"
+            "fsname=mergerfs_slow"
+            "uid=994"
+            "gid=993"
+            "umask=002"
+            "x-mount.mkdir"
+        ];
+        fsType = "fuse.mergerfs";
+      };
+
+      fileSystems.${vars.mainArray} = 
+      { device = "${vars.cacheArray}:${vars.slowArray}";
+        options = [
+          "category.create=lfs"
+            "defaults"
+            "allow_other"
+            "moveonenospc=1"
+            "minfreespace=500G"
+            "func.getattr=newest"
+            "fsname=user"
+            "uid=994"
+            "gid=993"
+            "umask=002"
+            "x-mount.mkdir"
+        ];
+        fsType = "fuse.mergerfs";
+      };
+
       boot = {
         # kernelPackages = mkDefault config.boot.zfs.package.latestCompatibleLinuxPackages;
 	kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
         # initrd.availableKernelModules = cfg.availableKernelModules;
         # kernelParams = cfg.kernelParams;
         initrd.systemd.emergencyAccess = true;
+	initrd.systemd.enable = true;
         supportedFilesystems = [ "zfs" ];
         zfs = {
           devNodes = cfg.devNodes;

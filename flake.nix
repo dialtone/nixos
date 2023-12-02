@@ -2,7 +2,7 @@
   description = "Barebones NixOS on ZFS config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     helix.url = "github:helix-editor/helix";
@@ -59,7 +59,7 @@
 	    ./configuration.nix
             agenix.nixosModules.default
           ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs outputs; vars = import ./hosts/dabass/vars.nix;};
         in
         {
           dabass = nixpkgs.lib.nixosSystem {
