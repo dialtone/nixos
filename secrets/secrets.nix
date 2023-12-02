@@ -5,4 +5,7 @@ in
 {
 	"hashedUserPassword.age".publicKeys = allKeys;
 	"sambaPassword.age".publicKeys = allKeys;
+	"wgPrivateKey.age".publicKeys = allKeys;
+	"wgMullvadPrivateKey.age".publicKeys = allKeys;
+
 }

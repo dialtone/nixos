@@ -25,6 +25,7 @@
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     ./boot.nix
     ./filesystems.nix
+    ./wireguard.nix
     (modulesPath + "/installer/scan/not-detected.nix")
 
     # (modulesPath + "/profiles/hardened.nix")

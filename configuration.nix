@@ -5,8 +5,15 @@ let inherit (inputs) self;
 in {
   # Enable NetworkManager for wireless networking,
   # You can configure networking with "nmtui" command.
-  networking.useDHCP = true;
-  networking.networkmanager.enable = false;
+  networking = {
+  	useDHCP = true;
+	networkmanager.enable = false;
+	#nat = {
+	#  enable = true;
+	#  externalInterface = eth0;
+	#};
+	iproute2.enable = true;
+  };
 
   users.users = {
     root = {

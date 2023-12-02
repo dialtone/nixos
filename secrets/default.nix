@@ -7,4 +7,8 @@
   age.secrets.sambaPassword = lib.mkDefault {
     file = ./sambaPassword.age;
   };
+
+  # Wireguard
+  age.secrets.wireguard_priv_key.file = ./wgPrivateKey.age;
+  age.secrets.mullvad_priv_key.file = ./wgMullvadPrivateKey.age;
 }
