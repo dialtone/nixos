@@ -116,6 +116,8 @@ in {
     # channels to pin package version.
   };
 
+  users.defaultUserShell = pkgs.fish;
+
   # Safety mechanism: refuse to build unless everything is
   # tracked by git
   #system.configurationRevision = if (self ? rev) then
@@ -123,7 +125,7 @@ in {
   #else
   #  throw "refuse to build: git tree is dirty";
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
   # let nix commands follow system nixpkgs revision
   nix.registry.nixpkgs.flake = inputs.nixpkgs;

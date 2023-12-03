@@ -4,9 +4,9 @@
     users.groups.multimedia = { };
     users.users."dialtone".extraGroups = [ "multimedia" ];
 
-    systemd.tmpfiles.rules = [
-      "d ${vars.mainArray}/media 0775 root multimedia - -"
-    ];
+    #systemd.tmpfiles.rules = [
+    #   "d ${vars.mainArray}/media 0775 root multimedia - -"
+    #];
 
     #homelab.traefik = {
     #  enable = true;
@@ -61,5 +61,6 @@
       };
     };
 
-    users.users.jellyfin.extraGroups = ["render"];
+    users.users.jellyfin.extraGroups = ["render" "share"];
+    users.users.deluge.extraGroups = ["share"];
 }
