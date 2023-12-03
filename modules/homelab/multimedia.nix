@@ -25,7 +25,10 @@
     environment.systemPackages = with pkgs; [
       jellyfin-ffmpeg
       intel-ocl
+      libva
       libva-utils
+      intel-media-sdk
+      intel-compute-runtime
     ];
 
     services = {
@@ -61,6 +64,6 @@
       };
     };
 
-    users.users.jellyfin.extraGroups = ["render" "share"];
+    users.users.jellyfin.extraGroups = ["render" "video" "share"];
     users.users.deluge.extraGroups = ["share"];
 }

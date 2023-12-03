@@ -267,12 +267,42 @@ fi
 ASPM_SETTING=2
 ENDPOINT="07:00.0"
 enable_aspm_byte $ENDPOINT
-ENDPOINT="07:00.2"
-enable_aspm_byte $ENDPOINT
-ENDPOINT="07:00.3"
-enable_aspm_byte $ENDPOINT
-ENDPOINT="07:00.4"
+ENDPOINT="00:02.1"
 enable_aspm_byte $ENDPOINT
 ENDPOINT="00:08.1"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="01:00.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="02:01.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="02:04.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="03:00.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="04:00.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="05:00.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="05:00.1"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="05:00.2"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="06:00.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="06:01.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="09:00.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="0a:00.0"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="0a:00.1"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="0a:00.2"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="0a:00.3"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="0a:00.4"
+enable_aspm_byte $ENDPOINT
+ENDPOINT="0a:00.6"
 enable_aspm_byte $ENDPOINT
 echo
