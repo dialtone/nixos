@@ -8,6 +8,8 @@ in
   imports = [
     ./aspm-tuning.nix
     ./samba.nix
+    ./multimedia.nix
+    ./home-assistant.nix
   ];
   environment = {
     systemPackages = with pkgs; [
