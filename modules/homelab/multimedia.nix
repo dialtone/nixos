@@ -22,10 +22,17 @@
 
     #};
 
+    environment.systemPackages = with pkgs; [
+      jellyfin-ffmpeg
+      intel-ocl
+      libva-utils
+    ];
+
     services = {
       jellyfin = {
         enable = true;
         group = "multimedia";
+	openFirewall = true;
       };
       sonarr = { enable = true; openFirewall = true; group = "multimedia"; };
       radarr = { enable = true; openFirewall = true; group = "multimedia"; };
@@ -53,4 +60,6 @@
         };
       };
     };
+
+    users.users.jellyfin.extraGroups = ["render"];
 }

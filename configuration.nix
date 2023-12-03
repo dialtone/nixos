@@ -28,7 +28,7 @@ in {
   #  desktopManager.gnome.enable = true;
   #  displayManager.gdm.enable = true;
   # };
-
+  nixpkgs.config.allowUnfree = true;
   ## enable ZFS auto snapshot on datasets
   ## You need to set the auto snapshot property to "true"
   ## on datasets for this to work, such as
