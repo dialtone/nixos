@@ -24,13 +24,16 @@ let
   };
 in
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 8080 80 443 ];
 
   services.traefik = {
     enable = true;
     staticConfigOptions = {
       entryPoints.web.address = ":80";
-      api.dashboard = true;
+      api = {
+        dashboard = true;
+	insecure = true;
+      };
       global = {
         checknewversion = false;
         sendanonymoususage = false;
@@ -38,7 +41,16 @@ in
     };
     dynamicConfigOptions = {
       http = {
-        routers = (builtins.mapAttrs mkRouter apps);
+        routers = lib.mkMerge [
+	  (builtins.mapAttrs mkRouter apps)
+	  {
+	    traefik = {
+	      rule = "Host(`traefik.dabass`)";
+	      service = "api@internal";
+              middlewares = "local-ip-whitelist";
+	    };
+	  }
+	];
 	services = (builtins.mapAttrs mkService apps);
 
         middlewares = {
