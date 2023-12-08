@@ -14,6 +14,7 @@ let
     };
   };
   apps = {
+    ha.port = 8123;
     jellyfin.port = 8096;
     sonarr.port = 8989;
     radarr.port = 7878;
