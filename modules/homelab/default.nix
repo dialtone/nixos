@@ -10,6 +10,7 @@ in
     ./samba.nix
     ./multimedia.nix
     ./home-assistant.nix
+    ./traefik.nix
   ];
   environment = {
     systemPackages = with pkgs; [
