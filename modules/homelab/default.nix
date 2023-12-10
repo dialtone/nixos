@@ -10,6 +10,8 @@ in
     ./samba.nix
     ./multimedia.nix
     ./home-assistant.nix
+    #./dashy.nix
+    #./dashboard.nix
     ./traefik.nix
   ];
   environment = {
