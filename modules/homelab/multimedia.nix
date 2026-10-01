@@ -27,7 +27,7 @@
       intel-ocl
       libva
       libva-utils
-      intel-media-sdk
+      vpl-gpu-rt
       intel-compute-runtime
     ];
 

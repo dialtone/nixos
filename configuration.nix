@@ -125,7 +125,7 @@ in {
   #else
   #  throw "refuse to build: git tree is dirty";
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "26.05";
 
   # let nix commands follow system nixpkgs revision
   nix.registry.nixpkgs.flake = inputs.nixpkgs;

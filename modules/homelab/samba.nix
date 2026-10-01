@@ -60,16 +60,18 @@ services.samba = {
     "root"
   ];
   securityType = "user";
-  extraConfig = ''
-    workgroup = WORKGROUP
-    server string = dabass 
-    netbios name = dabass
-    security = user 
-    hosts allow = 192.168.88.0/24 10.0.0.0/24
-    guest account = nobody
-    map to guest = bad user
-    passdb backend = tdbsam
-    '';
+  settings = {
+    global = {
+        workgroup = "WORKGROUP";
+        "server string" = "dabass";
+        "netbios name" = "dabass";
+        security = "user";
+        "hosts allow" = "192.168.88.0/24 10.0.0.0/24";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+        "passdb backend" = "tdbsam";
+    };
+  };
   shares = smb_shares;
 };
 services.avahi = {
