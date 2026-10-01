@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One-time setup for the Hermes agent on dabass.
 #
-# Run on dabass from the root of this repo, after pulling the commit that adds
+# Run on dabass as root, after pulling the commit that adds
 # modules/homelab/hermes.nix:
 #
 #   ./scripts/setup-hermes.sh
@@ -24,6 +24,7 @@ die() { echo "error: $*" >&2; exit 1; }
 step() { printf '\n==> %s\n' "$*"; }
 
 [[ $(hostname) == dabass ]] || die "run this on dabass"
+[[ $EUID -eq 0 ]] || die "run this as root"
 for cmd in agenix openssl nixos-rebuild docker git; do
   command -v "$cmd" >/dev/null || [[ $cmd == docker ]] || die "missing $cmd"
 done
@@ -31,7 +32,7 @@ done
 
 if [[ -e $SECRET ]]; then
   echo "$SECRET already exists. To change values, edit it instead:"
-  echo "  cd secrets && sudo agenix -e hermesEnv.age -i $IDENTITY"
+  echo "  cd secrets && agenix -e hermesEnv.age -i $IDENTITY"
   read -rp "Overwrite it from scratch? [y/N] " ans
   [[ $ans == [yY] ]] || exit 0
   rm -f "$SECRET"
@@ -140,7 +141,7 @@ grep -q '@[A-Z_]*@' "$CLEARTEXT" && die "unfilled placeholder left in template"
 git add "$SECRET" # flakes only see files tracked by git
 
 step "Rebuilding NixOS"
-sudo nixos-rebuild switch --flake ".#dabass"
+nixos-rebuild switch --flake ".#dabass"
 
 step "Waiting for the container"
 for _ in $(seq 1 30); do
@@ -148,7 +149,7 @@ for _ in $(seq 1 30); do
   sleep 2
 done
 systemctl status --no-pager docker-hermes.service | head -n 5 || true
-sudo docker logs --tail 30 hermes 2>&1 || true
+docker logs --tail 30 hermes 2>&1 || true
 
 cat <<EOF
 
@@ -157,19 +158,19 @@ Done. Next steps:
   1. Commit the encrypted secret:  git commit -m "add hermes secrets" $SECRET
   2. Dashboard:  http://hermes.dabass   (user dialtone)
      API:        http://hermes-api.dabass/v1   (bearer key below)
-       sudo agenix -d secrets/hermesEnv.age -i $IDENTITY | grep API_SERVER_KEY
+       agenix -d secrets/hermesEnv.age -i $IDENTITY | grep API_SERVER_KEY
   3. Hermes Workspace: smb://dabass/Hermes  (mounted at /workspace in the agent)
   4. WhatsApp (dedicated number): pair once, then scan the QR from
      WhatsApp -> Settings -> Linked Devices on the Hermes phone:
-       sudo docker exec -it hermes hermes whatsapp
-       sudo systemctl restart docker-hermes
+       docker exec -it hermes hermes whatsapp
+       systemctl restart docker-hermes
   5. Discord: invite the bot to your server (OAuth2 URL generator, scopes
      "bot" + "applications.commands") and give it access to the private channel.
 
 Changing secrets later (tokens, adding a platform):
-  cd secrets && sudo agenix -e hermesEnv.age -i $IDENTITY && cd ..
-  git add secrets/hermesEnv.age && sudo nixos-rebuild switch --flake .#dabass
-  sudo systemctl restart docker-hermes   # env files are only read at container start
+  cd secrets && agenix -e hermesEnv.age -i $IDENTITY && cd ..
+  git add secrets/hermesEnv.age && nixos-rebuild switch --flake .#dabass
+  systemctl restart docker-hermes   # env files are only read at container start
 
 Note: config.yaml in /persist/opt/services/hermes is only seeded on first
 start. Delete it (with the container stopped) to re-seed from hermes.nix.
