@@ -50,9 +50,27 @@ Before you start, have these ready (anything you skip can be added later):
   - WhatsApp: your own number, digits with country code (e.g. 14155550123)
 EOF
 
+# Pasted text arrives wrapped in bracketed-paste escapes on many terminals;
+# plain `read` keeps them. Turn the mode off and strip any that still arrive.
+printf '\e[?2004l'
+
 ask() { # ask VAR "prompt" [secret]
   local __v
-  if [[ ${3:-} == secret ]]; then read -rsp "$2: " __v; echo; else read -rp "$2: " __v; fi
+  # Pre-set in the environment (e.g. `read -s ANTHROPIC_API_KEY; export ...`)? Use it.
+  if [[ -n ${!1:-} ]]; then
+    echo "$2: (taken from environment)"
+    return
+  fi
+  # Input is echoed on purpose: hidden prompts swallow pastes on some terminals.
+  read -rp "$2: " __v
+  __v=${__v//$'\e[200~'/}
+  __v=${__v//$'\e[201~'/}
+  __v=${__v//$'\r'/}
+  __v=${__v#"${__v%%[![:space:]]*}"} # trim leading whitespace
+  __v=${__v%"${__v##*[![:space:]]}"} # trim trailing whitespace
+  if [[ ${3:-} == secret && -n $__v ]]; then
+    echo "  got ${#__v} chars"
+  fi
   printf -v "$1" '%s' "$__v"
 }
 
