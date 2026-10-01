@@ -22,7 +22,7 @@
   # import preconfigured profiles
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
+    #inputs.nixos-hardware.nixosModules.common-gpu-intel
     ./boot.nix
     ./filesystems.nix
     ./wireguard.nix
@@ -60,11 +60,11 @@
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+      #intel-media-driver
+      #vaapiIntel
+      #vaapiVdpau
+      #libvdpau-va-gl
+      #intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
     
       #pkgs.vaapiVdpau
       #pkgs.libvdpau-va-gl
@@ -81,16 +81,14 @@
     gotools
     gopls
     go-outline
-    gocode
     gopkgs
-    gocode-gomod
     godef
     golint
     powertop
     cpufrequtils
     gnumake
     gcc
-    intel-gpu-tools
+    #intel-gpu-tools
     lm_sensors
     ripgrep
     iotop

@@ -21,7 +21,7 @@
       privateKeyFile = config.age.secrets.wireguard_priv_key.path;
       peers = [
         {
-          # publicKey and endpoint have to match and are from the mullvad server list
+	  # publicKey and endpoint have to match and are from the mullvad server list
           publicKey = "aOt3gFGc0a0UMAdcxhBWX9TCnEabe2s66MHzjXU50Tc=";
           endpoint = "198.54.134.130:3069";
           allowedIPs = [ "0.0.0.0/0" ];
