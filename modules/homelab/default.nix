@@ -13,6 +13,7 @@ in
     #./dashy.nix
     #./dashboard.nix
     ./traefik.nix
+    ./hermes.nix
   ];
   environment = {
     systemPackages = with pkgs; [

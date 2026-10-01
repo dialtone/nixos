@@ -7,5 +7,6 @@ in
 	"sambaPassword.age".publicKeys = allKeys;
 	"wgPrivateKey.age".publicKeys = allKeys;
 	"wgMullvadPrivateKey.age".publicKeys = allKeys;
+	"hermesEnv.age".publicKeys = allKeys;
 
 }

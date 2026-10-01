@@ -11,4 +11,7 @@
   # Wireguard
   age.secrets.wireguard_priv_key.file = ./wgPrivateKey.age;
   age.secrets.mullvad_priv_key.file = ./wgMullvadPrivateKey.age;
+
+  # Hermes agent environment (API keys, dashboard login, platform tokens)
+  age.secrets.hermesEnv.file = ./hermesEnv.age;
 }

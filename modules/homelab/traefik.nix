@@ -23,6 +23,8 @@ let
     readarr.port = 8787;
     bazarr.port = config.services.bazarr.listenPort;
     deluge.port = config.services.deluge.web.port;
+    hermes.port = 9119;
+    hermes-api.port = 8642;
   };
 in
 {

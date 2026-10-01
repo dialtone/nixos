@@ -5,6 +5,7 @@ let
     share_list = {
       Backups = { path = "/mnt/storage/Backups"; };
       Documents = { path = "/mnt/storage/Documents"; };
+      Hermes = { path = "/mnt/storage/Hermes"; };
       Media = { path = "/mnt/storage/Media"; };
       Misc = { path = "/mnt/mergerfs_slow/Misc";  };
       TimeMachine = { path = "/mnt/storage/TimeMachine"; "fruit:time machine" = "yes"; };
