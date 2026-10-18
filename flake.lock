@@ -454,6 +454,22 @@
         "type": "github"
       }
     },
+    "pebblepot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792301509,
+        "narHash": "sha256-Dqm7tGAsfnS7KAEVt1MuVUI7mi0DwoIfnWv+OMMQo14=",
+        "owner": "dialtone",
+        "repo": "pebblepot",
+        "rev": "e775458878a99d6d03136e69d3fb3bb9ed5a4592",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dialtone",
+        "repo": "pebblepot",
+        "type": "github"
+      }
+    },
     "plenary": {
       "flake": false,
       "locked": {
@@ -478,7 +494,8 @@
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "pebblepot": "pebblepot"
       }
     },
     "rust-overlay": {

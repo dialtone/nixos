@@ -25,6 +25,7 @@ let
     deluge.port = config.services.deluge.web.port;
     hermes.port = 9119;
     hermes-api.port = 8642;
+    pebblepot.port = 8070;
   };
 in
 {
