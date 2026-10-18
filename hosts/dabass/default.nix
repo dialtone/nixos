@@ -92,5 +92,6 @@
     lm_sensors
     ripgrep
     iotop
+    openssl
   ];
 }
