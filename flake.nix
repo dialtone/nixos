@@ -12,6 +12,9 @@
     neovim-plugins.inputs.nixpkgs.follows = "nixpkgs-unstable";
     nixgl.url = "github:guibou/nixGL";
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
+    # Source only; built into a local Docker image by modules/homelab/pebblepot.nix.
+    pebblepot.url = "github:dialtone/pebblepot";
+    pebblepot.flake = false;
   };
 
   outputs =

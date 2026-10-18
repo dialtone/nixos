@@ -14,6 +14,7 @@ in
     #./dashboard.nix
     ./traefik.nix
     ./hermes.nix
+    ./pebblepot.nix
   ];
   environment = {
     systemPackages = with pkgs; [
